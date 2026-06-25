@@ -1,19 +1,22 @@
 // @ts-nocheck
 import React from "react";
-import ReactDOM from "react-dom/client";
-import "./css/index.css";
-import App from "./app/App";
-import { store } from "./app/store";
+import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
+import { store } from "./app/store";
+import App from "./app/App";
+import CssBaseline from "@mui/material/CssBaseline";
+import { ThemeProvider } from "@mui/material/styles";
+import theme from "./theme";
+import "./css/index.css"; // Mana shu yer css papkasiga to'g'rilandi!
 
-const root = ReactDOM.createRoot(
-  document.getElementById("root") as HTMLElement,
-);
-
-root.render(
+ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <App />
+      </ThemeProvider>
     </Provider>
   </React.StrictMode>,
+  document.getElementById("root"),
 );
