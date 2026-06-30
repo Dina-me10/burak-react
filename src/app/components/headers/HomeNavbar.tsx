@@ -17,7 +17,7 @@ export function HomeNavbar() {
           <Stack className="links"
           >
             <Box className={"hover-line"}>
-              <NavLink to="/" activeClassName={"underline"}>
+              <NavLink to="/" >
                 Home
               </NavLink>
             </Box>
