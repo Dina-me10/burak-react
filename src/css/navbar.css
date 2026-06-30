@@ -240,5 +240,5 @@
   transform: scaleX(1);
 }
 .other-navbar div.hover-line:hover:after {
-  transform: 0% 50%;
+  transform: scaleX(1);
 }
