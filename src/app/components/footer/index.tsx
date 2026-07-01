@@ -5,30 +5,27 @@ import styled from "styled-components";
 
 const Footers = styled.div`
   width: 100%;
-  min-height: 590px;
+  height: 590px;
   display: flex;
   background: #343434;
   background-size: cover;
-  padding-bottom: 40px;
 `;
 
 export default function Footer() {
   const authMember = null;
+
   return (
     <Footers>
       <Container>
-        <Stack
-          direction={"row"}
-          sx={{ mt: "94px", justifyContent: "space-between" }}
-        >
-          <Stack direction={"column"} style={{ width: "340px" }}>
+        <Stack flexDirection={"row"} sx={{ mt: "94px" }}>
+          <Stack flexDirection={"column"} style={{ width: "340px" }}>
             <Box>
-              <img width={"100px"} src={"/icons/burak.svg"} />
+              <img width={"100px"} src={"/icons/bumarak.svg"} />
             </Box>
             <Box className={"foot-desc-txt"}>
               Focusing on the gourmet Turkish breakfast as well as the youth
-              society, CZN Burak Gurme aims to bring Turkish cuisine back. CZN
-              Burak Gurme creates an illusion with its cuisine.
+              society, ZEN Bumarak Gurme aims to bring Turkish cuisine back. ZEN
+              Bumarak Gurme creates an illusion with its cuisine.
             </Box>
             <Box className="sns-context">
               <img src={"/icons/facebook.svg"} />
@@ -37,8 +34,7 @@ export default function Footer() {
               <img src={"/icons/youtube.svg"} />
             </Box>
           </Stack>
-
-          <Stack direction={"row"} sx={{ gap: "100px" }}>
+          <Stack sx={{ ml: "288px" }} flexDirection={"row"}>
             <Stack>
               <Box>
                 <Box className={"foot-category-title"}>Bo'limlar</Box>
@@ -50,15 +46,16 @@ export default function Footer() {
                 </Box>
               </Box>
             </Stack>
-
-            <Stack>
+            <Stack sx={{ ml: "100px" }}>
               <Box>
                 <Box className={"foot-category-title"}>Find us</Box>
                 <Box
-                  sx={{ mt: "20px", display: "flex", flexDirection: "column", justifyContent: "space-between" }}
+                  flexDirection={"column"}
+                  sx={{ mt: "20px" }}
                   className={"foot-category-link"}
+                  justifyContent={"space-between"}
                 >
-                  <Box sx={{ display: "flex", flexDirection: "row" }} className={"find-us"}>
+                  <Box flexDirection={"row"} className={"find-us"}>
                     <span>L.</span>
                     <div>Downtown, Dubai</div>
                   </Box>
@@ -79,7 +76,6 @@ export default function Footer() {
             </Stack>
           </Stack>
         </Stack>
-
         <Stack
           style={{ border: "1px solid #C5C8C9", width: "100%", opacity: "0.2" }}
           sx={{ mt: "80px" }}

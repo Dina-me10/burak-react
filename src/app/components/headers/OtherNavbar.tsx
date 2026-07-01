@@ -2,25 +2,21 @@ import { Box, Button, Container, Stack } from "@mui/material";
 import { NavLink } from "react-router-dom";
 import Basket from "./Basket";
 
-export function OtherNavbar() {
+export default function OtherNavbar() {
   const authMember = null;
+
   return (
     <div className="other-navbar">
       <Container className="navbar-container">
-       <Stack className = "menu"> 
+        <Stack className="menu">
           <Box>
-            <NavLink to="/"> 
-              <img className="brand-logo"
-                src="/icons/burak.svg"
-              />
+            <NavLink to="/">
+              <img className="brand-logo" src="/icons/bumarak.svg" />
             </NavLink>
           </Box>
-          <Stack className="links"
-          >
+          <Stack className="links">
             <Box className={"hover-line"}>
-              <NavLink to="/" activeClassName={"underline"}>
-                Home
-              </NavLink>
+              <NavLink to="/">Home</NavLink>
             </Box>
             <Box className={"hover-line"}>
               <NavLink to="/products" activeClassName={"underline"}>
@@ -30,7 +26,7 @@ export function OtherNavbar() {
             {authMember ? (
               <Box className={"hover-line"}>
                 <NavLink to="/orders" activeClassName={"underline"}>
-                  Order
+                  Orders
                 </NavLink>
               </Box>
             ) : null}
@@ -46,26 +42,23 @@ export function OtherNavbar() {
                 Help
               </NavLink>
             </Box>
-            {/* BASKET */}
             <Basket />
 
             {!authMember ? (
               <Box>
-                <Button
-                  variant="contained" className="login-button"
-                >
+                <Button variant="contained" className="login-button">
                   Login
                 </Button>
               </Box>
             ) : (
-              <img 
-              className="user-avatar" 
-              src = {"/icons/default-user.svg"}
-              aria-haspopup={"true"} />
+              <img
+                className="user-avatar"
+                src={"/icons/default-user.svg"}
+                aria-haspopup={"true"}
+              />
             )}
           </Stack>
         </Stack>
-        
       </Container>
     </div>
   );

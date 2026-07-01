@@ -1,9 +1,15 @@
-// @ts-nocheck
-import React from "react";
-import "./app.css";
+import React from 'react';
+import { render } from '@testing-library/react';
+import { Provider } from 'react-redux';
+import { store } from './store';
+import App from './App';
 
-function App() {
-  return <div></div>;
-}
+test('renders learn react link', () => {
+  const { getByText } = render(
+    <Provider store={store}>
+      <App />
+    </Provider>
+  );
 
-export default App;
+  expect(getByText(/learn/i)).toBeInTheDocument();
+});
