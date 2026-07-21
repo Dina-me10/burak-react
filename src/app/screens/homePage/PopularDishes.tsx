@@ -13,7 +13,6 @@ import { useSelector } from "react-redux";
 import { createSelector } from "reselect";
 import { retrievePopularDishes } from "./selector";
 import { Product } from "../../../lib/types/product";
-
 import { serverApi } from "../../../lib/config";
 
 /** REDUX SLICE & SELECTOR */
@@ -22,42 +21,44 @@ const popularDishesRetriever = createSelector(
   (popularDishes) => ({ popularDishes })
 );
 
-
-
 export default function PopularDishes() {
   const { popularDishes } = useSelector(popularDishesRetriever);
 
-  console.log("popularDishes:", popularDishes);
+  //console.log("popularDishes:", popularDishes);
 
- return (
- <div className="popular-dishes-frame">
-  <Container>
-   <Stack className="popular-section">
-    <Box className="category-title">Popular Dishes</Box>
-    <Stack className="cards-frame">
-     {popularDishes.length !== 0 ? (
-      popularDishes.map((ele: Product) => {
-       const imagePath = `${serverApi}/${ele.productImages[0]}`;
-       return (
-        <CssVarsProvider key={ele._id}>
-         <Card className={"card"}>
-          <CardCover>
-           <img src={imagePath} alt="" />
-          </CardCover>
-          <CardCover className={"card-cover"} />
-          <CardContent sx={{ justifyContent: "flex-end" }}>
-           <Stack
-            flexDirection={"row"}
-            justifyContent={"space-between"}
-           >
-            <Typography
-             level="h2"
-             fontSize="lg"
-             textColor="#fff"
-             mb={1}
-            >
-             {ele.productName}
-            </Typography>
+  return (
+    <div className="popular-dishes-frame">
+      <Container>
+        <Stack className="popular-section">
+          <Box className="category-title">Popular Dishes</Box>
+          <Stack className="cards-frame">
+            {popularDishes.length !== 0 ? (
+              popularDishes.map((product: Product) => {
+                const imagePath = `${serverApi}/${product.productImages[0]}`;
+                return (
+                  <CssVarsProvider key={product._id}>
+                    <Card className={"card"}>
+                      <CardCover>
+                        <img
+                          src={imagePath}
+                          alt=""
+                          style={{ objectFit: "cover", width: "100%", height: "100%" }}
+                        />
+                      </CardCover>
+                      <CardCover className={"card-cover"} />
+                      <CardContent sx={{ justifyContent: "flex-end" }}>
+                        <Stack
+                          flexDirection={"row"}
+                          justifyContent={"space-between"}
+                        >
+                          <Typography
+                            level="h2"
+                            fontSize="lg"
+                            textColor="#fff"
+                            mb={1}
+                          >
+                            {product.productName}
+                          </Typography>
                           <Typography
                             sx={{
                               fontWeight: "md",
@@ -66,7 +67,7 @@ export default function PopularDishes() {
                               display: "flex",
                             }}
                           >
-                            {ele.productViews}
+                            {product.productViews}
                             <VisibilityIcon
                               sx={{ fontSize: 25, marginLeft: "5px" }}
                             />
@@ -95,7 +96,7 @@ export default function PopularDishes() {
                           }}
                           noWrap
                         >
-                          {ele.productDesc}
+                          {product.productDesc}
                         </Typography>
                       </CardOverflow>
                     </Card>
