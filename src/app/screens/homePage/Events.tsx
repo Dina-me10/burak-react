@@ -1,9 +1,11 @@
 import { Box, Stack } from "@mui/material";
-import { Swiper, SwiperSlide } from "swiper/react"; // @ts-ignore
-import SwiperCore, { Autoplay, Navigation, Pagination } from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import { plans } from "../../../lib/data/plans";
 
-SwiperCore.use([Autoplay, Navigation, Pagination]);
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 
 export default function Events() {
   return (
@@ -14,6 +16,7 @@ export default function Events() {
         </Box>
 
         <Swiper
+          modules={[Autoplay, Navigation, Pagination]}
           className={"events-info swiper-wrapper"}
           slidesPerView={"auto"}
           centeredSlides={true}
