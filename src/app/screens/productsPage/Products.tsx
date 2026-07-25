@@ -18,6 +18,7 @@ import { Product, ProductInquiry } from "../../../lib/types/product";
 import ProductService from "../../services/ProductService";
 import { ProductCollection, ProductVolume } from "../../../lib/enums/product.enum";
 import { serverApi } from "../../../lib/config";
+import { useHistory } from "react-router-dom";
 
 /** REDUX SLICE & SELECTOR **/
 const actionDispatch = (dispatch: Dispatch) => ({
@@ -40,6 +41,7 @@ export default function Products() {
   search: "",
 });
 const [ searchText , setSearchText ] = useState<string> (""); 
+const history = useHistory();
 
   useEffect(() => {
     const product = new ProductService();
@@ -78,6 +80,10 @@ const paginationHandler = (e: ChangeEvent<any>, value: number) => {
   productSearch.page = value;
   setProductSearch({ ...productSearch });
 };
+
+const chooseDishHandler = (id: string ) => {
+   history.push(`/products/${id}`);
+}
 
   return (
     <div className={"products"}>
@@ -197,7 +203,8 @@ const paginationHandler = (e: ChangeEvent<any>, value: number) => {
                   ? product.productVolume + "litre" 
                   : product.productSize + "size";
                   return (
-                    <Stack key={product._id} className={"product-card"}>
+                    <Stack key={product._id} className={"product-card"}
+                     onClick = {() => chooseDishHandler(product._id)} >
                       <Stack
                         className={"product-img"}
                         sx={{ backgroundImage: `url(${imagePath})` }}
