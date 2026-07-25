@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 import { Box, Button, Container, Stack } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import MonetizationOnIcon from "@mui/icons-material/MonetizationOn";
@@ -74,7 +74,10 @@ const searchProducthandler = () => {
   setProductSearch({ ...productSearch});
 
 }
-
+const paginationHandler = (e: ChangeEvent<any>, value: number) => {
+  productSearch.page = value;
+  setProductSearch({ ...productSearch });
+};
 
   return (
     <div className={"products"}>
@@ -236,8 +239,11 @@ const searchProducthandler = () => {
 
           <Stack className={"pagination-section"}>
             <Pagination
-              count={3}
-              page={1}
+              count={products.length !== 0 
+                ? productSearch.page + 1
+                : productSearch.page
+              }
+              page={productSearch.page}
               renderItem={(item) => (
                 <PaginationItem
                   components={{
@@ -248,6 +254,7 @@ const searchProducthandler = () => {
                   color={"secondary"}
                 />
               )}
+              onChange={paginationHandler}
             />
           </Stack>
         </Stack>
