@@ -7,10 +7,10 @@ export const store = configureStore({
   middleware: (getDefaultMiddleware) =>
     // @ts-ignore
     getDefaultMiddleware().concat(reduxLogger),
-  reducer: {
-    homePage: HomePageReducer,
-    Productspage: ProductsPageReducer,
-  },
+ reducer: {
+  homePage: HomePageReducer,
+  productsPage: ProductsPageReducer, 
+},
 });
 
 export type AppDispatch = typeof store.dispatch;
