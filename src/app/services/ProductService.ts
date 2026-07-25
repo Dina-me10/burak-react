@@ -9,31 +9,34 @@ class ProductService {
     this.path = serverApi;
   }
 
- public async getProducts(input: ProductInquiry): Promise<Product[]> {
-    try {
-      // 1. URLni shakllantiring
-     let url = `http://localhost:3003/product/all?order=${input.order}&page=${input.page}&limit=${input.limit}`;
-      
-      if (input.productCollection) {
-        url += `&productCollection=${input.productCollection}`;
-      }
-      
-      if (input.search) {
-        url += `&search=${input.search}`;
-      }
+public async getProducts(input: ProductInquiry): Promise<Product[]> {
+  try {
+    let url = `${this.path}/product/all?order=${input.order}&page=${input.page}&limit=${input.limit}`;
+    if (input.productCollection)
+      url += `&productCollection=${input.productCollection}`;
+    if (input.search) url += `&search=${input.search}`;
 
-      console.log("URINILAYOTGAN URL:", url);
+    const result = await axios.get(url);
+    console.log("getProducts:", result);
 
-      // 2. Agar axios.get(url) 404 beryotgan bo'lsa, 
-      // demak 'this.path' ichida 'http://localhost:3003' to'liq yozilmagan.
-      // Agar 'this.path' to'g'ri bo'lsa, pastdagi qator ishlaydi:
-      const result = await axios.get(url); 
-      
-      return result.data;
-    } catch (err) {
-      console.log("Error, getProduct:", err);
-      throw err;
-    }
+    return result.data;
+  } catch (err) {
+    console.log("Error, getProducts:", err);
+    throw err;
+  }
+}
+
+public async getProduct(productId: string): Promise<Product> {
+  try {
+    const url = `${this.path}/product/${productId}`;
+    const result = await axios.get(url, { withCredentials: true });
+    console.log("getProduct:", result);
+
+    return result.data;
+  } catch (err) {
+    console.log("Error, getProduct:", err);
+    throw err;
+  }
 }
 }
 
