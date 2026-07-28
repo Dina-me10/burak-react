@@ -20,10 +20,9 @@ import { sweetErrorHandling, sweetTopSuccessAlert } from "../lib/sweetAlert";
 import { T } from "../lib/types/common";
 import MemberService from "./services/MemberService";
 import { useGlobals } from "./hooks/useGlobals";
- 
 function App() {
   const location = useLocation();
-  const {setAuthMember} = useGlobals();
+  const { setAuthMember } = useGlobals();
   const { cartItems, onAdd, onRemove, onDelete, onDeleteAll } = useBasket();
   const [signupOpen, setSignupOpen] = useState<boolean>(false);
   const [loginOpen, setLoginOpen] = useState<boolean>(false);
@@ -44,14 +43,13 @@ function App() {
       const member = new MemberService();
       await member.logout();
 
-      await sweetTopSuccessAlert("success", 700)
+      await sweetTopSuccessAlert("success", 700);
       setAuthMember(null);
     } catch (err) {
       console.log(err);
       sweetErrorHandling(Messages.error1);
     }
   };
- 
   return (
     <>
       {location.pathname === "/" ? (
@@ -64,9 +62,9 @@ function App() {
           setSignupOpen={setSignupOpen}
           setLoginOpen={setLoginOpen}
           anchorEl={anchorEl}
-handleLogoutClick={handleLogoutClick}
-handleCloseLogout={handleCloseLogout}
-handleLogoutRequest={handleLogoutRequest}
+          handleLogoutClick={handleLogoutClick}
+          handleCloseLogout={handleCloseLogout}
+          handleLogoutRequest={handleLogoutRequest}
         />
       ) : (
         <OtherNavbar
@@ -77,13 +75,12 @@ handleLogoutRequest={handleLogoutRequest}
           onDeleteAll={onDeleteAll}
           setSignupOpen={setSignupOpen}
           setLoginOpen={setLoginOpen}
-           anchorEl={anchorEl}
-handleLogoutClick={handleLogoutClick}
-handleCloseLogout={handleCloseLogout}
-handleLogoutRequest={handleLogoutRequest}
+          anchorEl={anchorEl}
+          handleLogoutClick={handleLogoutClick}
+          handleCloseLogout={handleCloseLogout}
+          handleLogoutRequest={handleLogoutRequest}
         />
       )}
- 
       <Switch>
         <Route path="/products">
           <ProductsPage onAdd={onAdd} />
@@ -102,7 +99,6 @@ handleLogoutRequest={handleLogoutRequest}
         </Route>
       </Switch>
       <Footer />
- 
       <AuthenticationModal
         signupOpen={signupOpen}
         loginOpen={loginOpen}
@@ -112,6 +108,4 @@ handleLogoutRequest={handleLogoutRequest}
     </>
   );
 }
- 
 export default App;
- 
