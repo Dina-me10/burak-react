@@ -5,7 +5,7 @@
   "dependencies": {
     "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.11.0",
-    "@material-ui/core": "^4.12.4",
+    "@material-ui/core": "4.12.4",
     "@mui/icons-material": "^5.8.4",
     "@mui/joy": "^5.0.0-beta.24",
     "@mui/lab": "^5.0.0-alpha.86",
@@ -24,7 +24,7 @@
     "redux-logger": "3.0.6",
     "socket.io-client": "^4.7.5",
     "styled-components": "^5.3.5",
-    "sweetalert2": "^11.4.23",
+    "sweetalert2": "11.4.23",
     "swiper": "^14.0.6",
     "typescript": "~4.1.5",
     "universal-cookie": "^4.0.4",

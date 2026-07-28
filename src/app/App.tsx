@@ -14,10 +14,18 @@ import "../css/footer.css";
 import Test from "./screens/Test";
 import { CartItem } from "../lib/types/search";
 import useBasket from "./hooks/useBasket";
+import AuthenticationModal from "./components/auth";
 
 function App() {
   const location = useLocation();
   const {cartItems, onAdd, onRemove, onDelete, onDeleteAll } = useBasket();
+  const [signupOpen, setSignupOpen] = useState<boolean>(false);
+const [loginOpen, setLoginOpen] = useState<boolean>(false);
+
+/** HANDLERS **/
+
+const handleSignupClose = () => setSignupOpen(false);
+const handleLoginClose = () => setLoginOpen(false);
 
 return (
   <>
@@ -39,15 +47,31 @@ return (
       />
     )}
 
-    <Switch>
-      <Route path="/products">
-        <ProductsPage onAdd={onAdd}/>
-      </Route>
-      <Route path="/orders">
-        <OrdersPage />
-      </Route>
-      {/* qolgan Route'lar */}
-    </Switch>
+  <Switch>
+  <Route path="/products">
+    <ProductsPage onAdd={onAdd} />
+  </Route>
+  <Route path="/orders">
+    <OrdersPage />
+  </Route>
+  <Route path="/member-page">
+    <UserPage />
+  </Route>
+  <Route path="/help">
+    <HelpPage />
+  </Route>
+  <Route path="/">
+    <HomePage />
+  </Route>
+</Switch>
+<Footer />
+
+ <AuthenticationModal
+  signupOpen={signupOpen}
+  loginOpen={loginOpen}
+  handleLoginClose={handleLoginClose}
+  handleSignupClose={handleSignupClose}
+/>
   </>
 );
 }
