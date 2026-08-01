@@ -13,17 +13,10 @@ import { useGlobals } from "../../hooks/useGlobals";
 import OrderService from "../../services/OrderService";
 import { sweetErrorHandling } from "../../../lib/sweetAlert";
 
-interface BasketProps {
-  cartItems: CartItem[];
-  onAdd: (item: CartItem) => void;
-  onRemove: (item: CartItem) => void;
-  onDelete: (item: CartItem) => void;
-  onDeleteAll: () => void;
-}
 
-export default function Basket(props: BasketProps) {
-  const { cartItems, onAdd, onRemove, onDelete, onDeleteAll } = props;
-  const {authMember , setOrderBuilder} = useGlobals();
+
+export default function Basket() {
+  const { authMember, setOrderBuilder, cartItems, onAdd, onRemove, onDelete, onDeleteAll } = useGlobals();
   const history = useHistory();
   const itemsPrice: number = cartItems.reduce(
   (a: number, c: CartItem) => a + c.quantity * c.price,
@@ -179,6 +172,3 @@ const totalPrice = (itemsPrice + shippingCost).toFixed(1);
 );
 }
 
-function setOrderBuilder(arg0: Date) {
-  throw new Error("Function not implemented.");
-}
