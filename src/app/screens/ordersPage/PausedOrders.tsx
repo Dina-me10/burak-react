@@ -38,10 +38,10 @@ export default function PausedOrders() {
                       <Box className={"price-box"}>
                         <p>${item.itemPrice}</p>
                         <img src={"/icons/close.svg"} />
-                        <p>{item.itemQuatity}</p>
+                        <p>{item.itemQuantity}</p>
                         <img src={"/icons/pause.svg"} />
                         <p style={{ marginLeft: "15px" }}>
-                          ${item.itemQuatity * item.itemPrice}
+                          ${item.itemQuantity * item.itemPrice}
                         </p>
                       </Box>
                     </Box>
